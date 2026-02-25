@@ -1,4 +1,5 @@
-﻿using ConceptsDB.Models;
+﻿using ConceptsDB.Dto.Course;
+using ConceptsDB.Models;
 using ConceptsDB.Repository.Courses;
 
 namespace ConceptsDB.Services;
@@ -12,7 +13,7 @@ public class CourseService
         _courseRepository = courseRepository;
     }
 
-    public async Task RegisterCourse(Course course)
+    public async Task RegisterCourse(RegisterCourseDto course)
     {
         var courseAlreadyExists = await GetCourseByName(course.Name);
 
@@ -20,8 +21,14 @@ public class CourseService
         {
             throw new Exception("Esse curso já está registrado no sistema.");
         }
+        
+        var newCourse = new Course()
+        {
+            Name = course.Name,
+            Matriculations = new List<Matriculation>()
+        };
 
-        await _courseRepository.RegisterCourse(course);
+        await _courseRepository.RegisterCourse(newCourse);
     }
 
     public async Task<List<Course>> ListCourses()
@@ -50,16 +57,23 @@ public class CourseService
         return course;
     }
 
-    public async Task UpdateCourse(Course course)
+    public async Task UpdateCourse(UpdateCourseDto course)
     {
-        var courseAlreadyExists = await GetCourseById(course.Id);
+        var courseAlreadyExists = await GetCourseById(course.IdCourse);
         
         if (courseAlreadyExists == null)
         {
             throw new Exception("Nenhum curso com esse ID encontrado no sistema.");
         }
         
-        await _courseRepository.UpdateCourse(course);
+        var updateCourse = new Course()
+        {
+            Id = course.IdCourse,
+            Name = course.NameCourse
+        };
+
+        
+        await _courseRepository.UpdateCourse(updateCourse);
     }
 
     public async Task DeleteCourse(int idCourse)
