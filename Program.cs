@@ -1,4 +1,7 @@
 ﻿using ConceptsDB.Configuration;
+using ConceptsDB.Dto.Course;
+using ConceptsDB.Dto.Matriculation;
+using ConceptsDB.Dto.Student;
 using ConceptsDB.Models;
 using ConceptsDB.Services;
 using Microsoft.Extensions.DependencyInjection;
@@ -105,17 +108,17 @@ public class Program
     public static async Task CreateStudent(StudentService service)
     {
         Console.Write("Nome do aluno: ");
-        var nameStudent = Console.ReadLine();
+        var nameStudent = Console.ReadLine()!;
         
         Console.Write("E-mail do aluno: ");
-        var emailStudent = Console.ReadLine();
+        var emailStudent = Console.ReadLine()!;
 
         try
         {
-            var student = new Student()
+            var student = new CreateStudentDto()
             {
-                Name = nameStudent!,
-                Email = emailStudent!
+                Name = nameStudent,
+                Email = emailStudent
             };
             
             await service.CreateStudent(student);
@@ -152,11 +155,11 @@ public class Program
     public static async Task GetStudentByEmail(StudentService service)
     {
         Console.Write("E-mail do aluno: ");
-        var email = Console.ReadLine();
+        var email = Console.ReadLine()!;
         
         try
         {
-            var student = await service.GetStudentByEmail(email!);
+            var student = await service.GetStudentByEmail(email);
 
             if (student == null)
             {
@@ -175,16 +178,16 @@ public class Program
     public static async Task RegisterCourse(CourseService service)
     {
         Console.Write("Nome do curso: ");
-        var nameCourse = Console.ReadLine();
+        var nameCourse = Console.ReadLine()!;
         
         try
         {
-            var newCourse = new Course()
+            var registerCourseDto = new RegisterCourseDto()
             {
-                Name = nameCourse!
+                Name = nameCourse,
             };
-
-            await service.RegisterCourse(newCourse);
+            
+            await service.RegisterCourse(registerCourseDto);
             Console.WriteLine("Curso cadastrado com sucesso.");
         }
         catch (Exception ex)
@@ -219,11 +222,11 @@ public class Program
     public static async Task GetCourseByName(CourseService service)
     {
         Console.Write("Nome do curso: ");
-        var nameCourse = Console.ReadLine();
+        var nameCourse = Console.ReadLine()!;
         
         try
         {
-            var course = await service.GetCourseByName(nameCourse!);
+            var course = await service.GetCourseByName(nameCourse);
 
             if (course == null)
             {
@@ -242,20 +245,20 @@ public class Program
     public static async Task UpdateCourse(CourseService service)
     {
         Console.Write("Id do curso: "); 
-        var idCourse = Console.ReadLine();
+        var idCourse = Console.ReadLine()!;
         
         Console.Write("Nome do curso: ");
-        var nameCourse = Console.ReadLine();
+        var nameCourse = Console.ReadLine()!;
 
         try
         {
-            var courseToUpdate = new Course()
+            var updateCouseDto = new UpdateCourseDto()
             {
-                Id = int.Parse(idCourse!),
-                Name = nameCourse!
+                IdCourse = int.Parse(idCourse),
+                NameCourse = nameCourse
             };
             
-            await service.UpdateCourse(courseToUpdate);
+            await service.UpdateCourse(updateCouseDto);
             
             Console.WriteLine("Curso atualizado com sucesso.");
         }   
@@ -268,8 +271,8 @@ public class Program
     public static async Task DeleteCourse(CourseService service)
     {
         Console.Write("Id do curso: ");
-        var idCourse = Console.ReadLine();
-        var id = int.Parse(idCourse!);
+        var idCourse = Console.ReadLine()!;
+        var id = int.Parse(idCourse);
         
         try
         {
@@ -286,21 +289,21 @@ public class Program
     private static async Task UpdateStudent(StudentService studentService)
     {
         Console.Write("ID do aluno: ");
-        var idStudent = Console.ReadLine();
+        var idStudent = Console.ReadLine()!;
         
         Console.Write("Nome do aluno: ");
-        var nameStudent = Console.ReadLine();
+        var nameStudent = Console.ReadLine()!;
         
         Console.Write("E-mail do aluno: ");
-        var emailStudent =  Console.ReadLine();
+        var emailStudent =  Console.ReadLine()!;
 
         try
         {
-            var student = new Student()
+            var student = new UpdateStudentDto()
             {
-                Id = int.Parse(idStudent!),
-                Name = nameStudent!,
-                Email = emailStudent!
+                Id = int.Parse(idStudent),
+                Name = nameStudent,
+                Email = emailStudent
             };
 
             await studentService.UpdateStudent(student);
@@ -316,8 +319,9 @@ public class Program
     private static async Task DeleteStudent(StudentService studentService)
     {
         Console.Write("ID do aluno: ");
-        var idStudent = Console.ReadLine();
-        var id = int.Parse(idStudent!);
+        var idStudent = Console.ReadLine()!;
+        var id = int.Parse(idStudent);
+        
         try
         {
             await studentService.DeleteStudent(id);
@@ -333,17 +337,17 @@ public class Program
     private static async Task EnrollStudent(MatriculationService matriculationService)
     {
         Console.Write("Id do aluno: ");
-        var idStudent = Console.ReadLine();
+        var idStudent = Console.ReadLine()!;
         
         Console.Write("Id do curso: ");
-        var idCourse = Console.ReadLine();
+        var idCourse = Console.ReadLine()!;
 
         try
         {
-            var newMatriculation = new Matriculation()
+            var newMatriculation = new RegisterMatriculationDto()
             {
-                StudentId = int.Parse(idStudent!),
-                CourseId = int.Parse(idCourse!)
+                StudentId = int.Parse(idStudent),
+                CourseId = int.Parse(idCourse)
             };
 
             await matriculationService.EnrollStudent(newMatriculation);
@@ -359,17 +363,17 @@ public class Program
     private static async Task UnenrollStudent(MatriculationService matriculationService)
     {
         Console.Write("Id do aluno: ");
-        var idStudent = Console.ReadLine();
+        var idStudent = Console.ReadLine()!;
         
         Console.Write("Id do curso: ");
-        var idCourse = Console.ReadLine();
+        var idCourse = Console.ReadLine()!;
 
         try
         {
             await matriculationService
                 .UnenrollStudent(
-                    int.Parse(idStudent!), 
-            int.Parse(idCourse!)
+                    int.Parse(idStudent), 
+            int.Parse(idCourse)
                 );
             
             Console.WriteLine("Aluno desmatriculado do curso com sucesso.");
@@ -383,11 +387,12 @@ public class Program
     private static async Task GetMatriculationsOfStudent(MatriculationService matriculationService)
     {
         Console.Write("Id do aluno: ");
-        var idStudent = Console.ReadLine();
+        var idStudent = Console.ReadLine()!;
 
         try
         {
-            var matriculations = await matriculationService.GetMatriculationsOfStudent(int.Parse(idStudent!));
+            var matriculations = await matriculationService
+                .GetMatriculationsOfStudent(int.Parse(idStudent));
 
             if (matriculations.Count == 0)
             {
