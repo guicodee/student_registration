@@ -1,4 +1,5 @@
-﻿using ConceptsDB.Models;
+﻿using ConceptsDB.Dto.Matriculation;
+using ConceptsDB.Models;
 using ConceptsDB.Repository.Matriculations;
 
 namespace ConceptsDB.Services;
@@ -12,7 +13,7 @@ public class MatriculationService
         _matriculationRepository = matriculationRepository;
     }
 
-    public async Task EnrollStudent(Matriculation matriculation)
+    public async Task EnrollStudent(RegisterMatriculationDto matriculation)
     {
         var studentIsAlreadyEnrolled = await IsAlreadyEnrolled(
             matriculation.StudentId, 
@@ -23,8 +24,14 @@ public class MatriculationService
         {
             throw new Exception("Estudante já está matriculado nesse curso.");
         }
+        
+        var newMatriculation = new Matriculation()
+        {
+            StudentId = matriculation.StudentId,
+            CourseId = matriculation.CourseId
+        };
 
-        await _matriculationRepository.EnrollStudent(matriculation);
+        await _matriculationRepository.EnrollStudent(newMatriculation);
     }
 
     public async Task UnenrollStudent(int idStudent, int idCourse)
