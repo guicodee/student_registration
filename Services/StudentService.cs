@@ -1,4 +1,5 @@
-﻿using ConceptsDB.Models;
+﻿using ConceptsDB.Dto.Student;
+using ConceptsDB.Models;
 using ConceptsDB.Repository;
 
 namespace ConceptsDB.Services;
@@ -12,7 +13,7 @@ public class StudentService
         _studentRepository = studentRepository;
     }
 
-    public async Task CreateStudent(Student student)
+    public async Task CreateStudent(CreateStudentDto student)
     {
         var studentAlreadyExists = await _studentRepository.GetStudentByEmail(student.Email);
 
@@ -20,8 +21,14 @@ public class StudentService
         {
             throw new Exception("Um aluno já tem esse e-mail cadastrado.");
         }
+        
+        var newStudent = new Student()
+        {
+            Name = student.Name,
+            Email = student.Email
+        };
 
-        await _studentRepository.CreateStudent(student);
+        await _studentRepository.CreateStudent(newStudent);
     }
 
     public async Task<List<Student>> ListStudents()
@@ -60,7 +67,7 @@ public class StudentService
         return student;
     }
 
-    public async Task UpdateStudent(Student student)
+    public async Task UpdateStudent(UpdateStudentDto student)
     {
         var studentAlreadyExists = await GetStudentById(student.Id);
 
@@ -68,8 +75,15 @@ public class StudentService
         {
             throw new Exception("Nenhum aluno encontrado no sistema.");
         }
+        
+        var updateStudent = new Student()
+        {
+            Id = student.Id,
+            Name = student.Name,
+            Email = student.Email
+        };
 
-        await _studentRepository.UpdateStudent(student);
+        await _studentRepository.UpdateStudent(updateStudent);
     }
 
     public async Task DeleteStudent(int id)
