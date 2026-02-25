@@ -117,7 +117,7 @@
       <workItem from="1771809302528" duration="5164000" />
       <workItem from="1771853422733" duration="18575000" />
       <workItem from="1771898203760" duration="5391000" />
-      <workItem from="1771970603993" duration="4042000" />
+      <workItem from="1771970603993" duration="6191000" />
     </task>
     <task id="LOCAL-00001" summary="Created to database utilizing EF and MySQL. Create models of Course, Matriculation and Student.">
       <option name="closed" value="true" />
@@ -151,7 +151,55 @@
       <option name="project" value="LOCAL" />
       <updated>1771974351619</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Implement CoursesRepository">
+      <option name="closed" value="true" />
+      <created>1771974893195</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1771974893195</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Implement CourseService">
+      <option name="closed" value="true" />
+      <created>1771974905830</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1771974905830</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Implement MatriculationRepository">
+      <option name="closed" value="true" />
+      <created>1771974923856</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1771974923856</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Implement MatriculationService">
+      <option name="closed" value="true" />
+      <created>1771974947213</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1771974947213</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Register repositories and services">
+      <option name="closed" value="true" />
+      <created>1771975190437</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1771975190437</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Implement main menu and console interaction logic">
+      <option name="closed" value="true" />
+      <created>1771975357104</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1771975357104</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -174,9 +222,17 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Created to database utilizing EF and MySQL. Create models of Course, Matriculation and Student." />
     <MESSAGE value="Created to migrations" />
-    <MESSAGE value="Created all part of repository of Student, with calls to database made with EF" />
-    <MESSAGE value="Created to service of student utilizing of repository." />
-    <option name="LAST_COMMIT_MESSAGE" value="Created to service of student utilizing of repository." />
+    <MESSAGE value="Implement StudentRepository EF Core CRUD operations" />
+    <MESSAGE value="Implement StudentService with business logic and validation." />
+    <MESSAGE value="Implement StudentRepository EF Core CRUD operations" />
+    <MESSAGE value="Implement StudentService with business logic and validation." />
+    <MESSAGE value="Implement CoursesRepository" />
+    <MESSAGE value="Implement CourseService" />
+    <MESSAGE value="Implement MatriculationRepository" />
+    <MESSAGE value="Implement MatriculationService" />
+    <MESSAGE value="Register repositories and services" />
+    <MESSAGE value="Implement main menu and console interaction logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implement main menu and console interaction logic" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

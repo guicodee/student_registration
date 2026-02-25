@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ConceptsDB")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4fb3f805f819211455abd08a80bb68bd53c17bb8")]
 [assembly: System.Reflection.AssemblyProductAttribute("ConceptsDB")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ConceptsDB")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
