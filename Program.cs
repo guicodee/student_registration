@@ -2,8 +2,8 @@
 using ConceptsDB.Dto.Course;
 using ConceptsDB.Dto.Matriculation;
 using ConceptsDB.Dto.Student;
-using ConceptsDB.Models;
 using ConceptsDB.Services;
+using ConceptsDB.Utils;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -252,9 +252,17 @@ public class Program
 
         try
         {
+            var idCourseFormatted = VerifyToNumberReceived.ParseInt(idCourse);
+
+            if (idCourseFormatted == null)
+            {
+                return;
+            }
+
+            
             var updateCouseDto = new UpdateCourseDto()
             {
-                IdCourse = int.Parse(idCourse),
+                IdCourse = idCourseFormatted.Value,
                 NameCourse = nameCourse
             };
             
@@ -272,11 +280,17 @@ public class Program
     {
         Console.Write("Id do curso: ");
         var idCourse = Console.ReadLine()!;
-        var id = int.Parse(idCourse);
         
         try
         {
-            await service.DeleteCourse(id);
+            var idFormatted = VerifyToNumberReceived.ParseInt(idCourse);
+
+            if (idFormatted == null)
+            {
+                return;    
+            }
+            
+            await service.DeleteCourse(idFormatted.Value);
             
             Console.WriteLine("Curso deletado com sucesso.");
         }
@@ -299,9 +313,16 @@ public class Program
 
         try
         {
+            var idStudentFormatted = VerifyToNumberReceived.ParseInt(idStudent);
+
+            if (idStudentFormatted == null)
+            {
+                return;
+            }
+
             var student = new UpdateStudentDto()
             {
-                Id = int.Parse(idStudent),
+                Id = idStudentFormatted.Value,
                 Name = nameStudent,
                 Email = emailStudent
             };
@@ -320,11 +341,17 @@ public class Program
     {
         Console.Write("ID do aluno: ");
         var idStudent = Console.ReadLine()!;
-        var id = int.Parse(idStudent);
         
         try
         {
-            await studentService.DeleteStudent(id);
+            var idStudentFormatted = VerifyToNumberReceived.ParseInt(idStudent);
+
+            if (idStudentFormatted == null)
+            {
+                return;
+            }
+
+            await studentService.DeleteStudent(idStudentFormatted.Value);
             
             Console.WriteLine("Aluno e suas matrículas deletadas com sucesso.");
         }
@@ -344,10 +371,19 @@ public class Program
 
         try
         {
+            var idStudentFormatted = VerifyToNumberReceived.ParseInt(idStudent);
+            var idCourseFormatted = VerifyToNumberReceived.ParseInt(idCourse);
+
+            if (idStudentFormatted == null ||  idCourseFormatted == null)
+            {
+                return;
+            }
+
+            
             var newMatriculation = new RegisterMatriculationDto()
             {
-                StudentId = int.Parse(idStudent),
-                CourseId = int.Parse(idCourse)
+                StudentId = idStudentFormatted.Value,
+                CourseId = idCourseFormatted.Value
             };
 
             await matriculationService.EnrollStudent(newMatriculation);
@@ -370,10 +406,18 @@ public class Program
 
         try
         {
+            var idStudentFormatted = VerifyToNumberReceived.ParseInt(idStudent);
+            var idCourseFormatted = VerifyToNumberReceived.ParseInt(idCourse);
+
+            if (idStudentFormatted == null ||  idCourseFormatted == null)
+            {
+                return;
+            }
+
             await matriculationService
                 .UnenrollStudent(
-                    int.Parse(idStudent), 
-            int.Parse(idCourse)
+                    idStudentFormatted.Value,
+                    idCourseFormatted.Value
                 );
             
             Console.WriteLine("Aluno desmatriculado do curso com sucesso.");
@@ -391,8 +435,15 @@ public class Program
 
         try
         {
+            var idStudentFormatted = VerifyToNumberReceived.ParseInt(idStudent);
+
+            if (idStudentFormatted == null)
+            {
+                return;
+            }
+            
             var matriculations = await matriculationService
-                .GetMatriculationsOfStudent(int.Parse(idStudent));
+                .GetMatriculationsOfStudent(idStudentFormatted.Value);
 
             if (matriculations.Count == 0)
             {
