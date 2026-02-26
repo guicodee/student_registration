@@ -119,3 +119,4 @@ C:\Users\Guilherme\Documents\Web API C#\ConceptsDB\ConceptsDB\bin\Debug\net8.0\M
 C:\Users\Guilherme\Documents\Web API C#\ConceptsDB\ConceptsDB\bin\Debug\net8.0\System.Diagnostics.EventLog.dll
 C:\Users\Guilherme\Documents\Web API C#\ConceptsDB\ConceptsDB\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Diagnostics.EventLog.Messages.dll
 C:\Users\Guilherme\Documents\Web API C#\ConceptsDB\ConceptsDB\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Diagnostics.EventLog.dll
+C:\Users\Guilherme\Documents\Web API C#\ConceptsDB\ConceptsDB\obj\Debug\net8.0\ConceptsDB.sourcelink.json
